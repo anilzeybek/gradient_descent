@@ -21,9 +21,12 @@ def derivative_of_objective(w1, w2, w3):
     return dW1, dW2, dW3
 
 
-weight1 = torch.rand((3, 16), requires_grad=True)
-weight2 = torch.rand((16, 4), requires_grad=True)
-weight3 = torch.rand((4, 1), requires_grad=True)
+weight1 = torch.rand((3, 16)) * 0.6 - 0.3
+weight2 = torch.rand((16, 4)) * 0.6 - 0.3
+weight3 = torch.rand((4, 1)) * 0.6 - 0.3
+weight1.requires_grad = True
+weight2.requires_grad = True
+weight3.requires_grad = True
 for _ in range(1000):
     dW1, dW2, dW3 = derivative_of_objective(weight1, weight2, weight3)
     weight1 = weight1 - 1e-10 * dW1
